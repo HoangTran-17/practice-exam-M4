@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<input type="button" th:href="@{/create}">Thêm thành phố</input>
+
+<h1>Danh sách thành phố</h1>
+<table border="1px" >
+    <tr>
+        <th>#</th>
+        <th>Thành phố</th>
+        <th>Quốc gia</th>
+        <th></th>
+
+    </tr>
+    <th:block th:each="province : ${provinces}">
+        <tr>
+            <td th:text="${province.id}"></td>
+            <td th:text="${province.name}">
+                <a th:href="@{/view-province/__${province.id}__ }">
+                    <th:block th:text="${province.name}"></th:block>
+                </a>
+            </td>
+            <td th:text="${province.country}"></td>
+
+            <td>
+                <a th:href="@{/edit-province/__${province.id}__ }">Chỉnh sửa</a>
+                <span>|</span>
+                <a th:href="@{/delete-province/__${province.id}__ }">Xóa</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>
